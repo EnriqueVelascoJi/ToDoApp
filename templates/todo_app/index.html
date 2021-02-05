@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+    <div class="row mb-5">
+        <div class="col">
+            <h1 class="mb-4">Agregar un nuevo estado</h1>
+            <form action="/todo_app/agregar_item/" method="POST">
+                <div class="row">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Escribe aquí...." aria-label="Username" aria-describedby="addon-wrapping" name="texto">
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary">Agregar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <ul class="list-group">
+                
+                {% for item in items %}
+                    <li class="list-group-item mb-3" aria-current="true">{{item.texto}}
+                        <form action="/todo_app/eliminar_item/{{item.id}}" method="POST">
+                            <button type="submit" class="btn btn-danger bt-sm float-end">Eliminar</button>
+                        </form>
+                    </li>
+                    
+                {% endfor %}
+                    
+                
+              </ul>
+        </div>
+        <div class="col-6">
+            <img src="{% static 'img/img1.png' %}" alt="img1" class="img-fluid">
+        </div>
+    </div>
+{% endblock content %}
+    
